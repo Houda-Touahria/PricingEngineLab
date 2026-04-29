@@ -48,29 +48,74 @@
 // }
 
 // 2 
+// package com.pricing;
+
+// import java.util.List;
+
+// public class PricingEngine {
+    
+//     // تغيير الدالة الرئيسية لاستخدام array
+//     public double calculate(List<Double> prices, List<Integer> quantities, String customerType, String discountCode) {
+//         double subtotal = calculateSubtotal(prices, quantities);
+//         double discount = calculateDiscount(subtotal, customerType, discountCode);
+//         double tax = (subtotal - discount) * 0.1;
+//         double finalPrice = subtotal - discount + tax;
+        
+        
+//         System.out.println("Subtotal: $" + subtotal);
+//         System.out.println("Discount: $" + discount);
+//         System.out.println("Tax: $" + tax);
+//         System.out.println("Final Price: $" + finalPrice);
+        
+//         return finalPrice;
+//     }
+    
+//     // دالة جديدة لحساب المجموع الفرعي
+//     private double calculateSubtotal(List<Double> prices, List<Integer> quantities) {
+//         double subtotal = 0;
+//         for (int i = 0; i < prices.size(); i++) {
+//             subtotal += prices.get(i) * quantities.get(i);
+//         }
+//         return subtotal;
+//     }
+    
+//     // دالة حساب الخصم
+//     private double calculateDiscount(double subtotal, String customerType, String discountCode) {
+//         if (customerType.equals("VIP")) {
+//             if (discountCode.equals("SAVE10")) {
+//                 return subtotal * 0.1;
+//             } else if (discountCode.equals("SAVE20")) {
+//                 return subtotal * 0.2;
+//             } else {
+//                 return subtotal * 0.05;
+//             }
+//         } else {
+//             if (discountCode.equals("SAVE10")) {
+//                 return subtotal * 0.05;
+//             } else if (discountCode.equals("SAVE20")) {
+//                 return subtotal * 0.1;
+//             } else {
+//                 return 0;
+//             }
+//         }
+//     }
+// }
+
+// 3
 package com.pricing;
 
 import java.util.List;
 
 public class PricingEngine {
     
-    // تغيير الدالة الرئيسية لاستخدام array
+    // الدالة الرئيسية - فقط للحسابات، بدون طباعة
     public double calculate(List<Double> prices, List<Integer> quantities, String customerType, String discountCode) {
         double subtotal = calculateSubtotal(prices, quantities);
         double discount = calculateDiscount(subtotal, customerType, discountCode);
         double tax = (subtotal - discount) * 0.1;
-        double finalPrice = subtotal - discount + tax;
-        
-        
-        System.out.println("Subtotal: $" + subtotal);
-        System.out.println("Discount: $" + discount);
-        System.out.println("Tax: $" + tax);
-        System.out.println("Final Price: $" + finalPrice);
-        
-        return finalPrice;
+        return subtotal - discount + tax;
     }
     
-    // دالة جديدة لحساب المجموع الفرعي
     private double calculateSubtotal(List<Double> prices, List<Integer> quantities) {
         double subtotal = 0;
         for (int i = 0; i < prices.size(); i++) {
@@ -79,7 +124,6 @@ public class PricingEngine {
         return subtotal;
     }
     
-    // دالة حساب الخصم
     private double calculateDiscount(double subtotal, String customerType, String discountCode) {
         if (customerType.equals("VIP")) {
             if (discountCode.equals("SAVE10")) {
