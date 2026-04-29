@@ -146,7 +146,44 @@
 // }
 
 // 4
-package com.pricing;
+// package com.pricing;
+
+// import java.util.List;
+
+// public class PricingEngine {
+    
+//     public double calculate(List<Double> prices, List<Integer> quantities, String customerType, String discountCode) {
+//         double subtotal = calculateSubtotal(prices, quantities);
+//         double discount = calculateDiscount(subtotal, customerType, discountCode);
+//         double tax = (subtotal - discount) * 0.1;
+//         return subtotal - discount + tax;
+//     }
+    
+//     private double calculateSubtotal(List<Double> prices, List<Integer> quantities) {
+//         double subtotal = 0;
+//         for (int i = 0; i < prices.size(); i++) {
+//             subtotal += prices.get(i) * quantities.get(i);
+//         }
+//         return subtotal;
+//     }
+    
+//     private double calculateDiscount(double subtotal, String customerType, String discountCode) {
+//         // VIP customers
+//         if (customerType.equals("VIP")) {
+//             if (discountCode.equals("SAVE10")) return subtotal * 0.1;
+//             if (discountCode.equals("SAVE20")) return subtotal * 0.2;
+//             return subtotal * 0.05;
+//         }
+        
+//         // Regular customers
+//         if (discountCode.equals("SAVE10")) return subtotal * 0.05;
+//         if (discountCode.equals("SAVE20")) return subtotal * 0.1;
+//         return 0;
+//     }
+// }
+
+// 5
+package main.java.com.pricing;
 
 import java.util.List;
 
@@ -154,8 +191,8 @@ public class PricingEngine {
     
     public double calculate(List<Double> prices, List<Integer> quantities, String customerType, String discountCode) {
         double subtotal = calculateSubtotal(prices, quantities);
-        double discount = calculateDiscount(subtotal, customerType, discountCode);
-        double tax = (subtotal - discount) * 0.1;
+        double discount = getDiscountStrategy(customerType).calculateDiscount(subtotal, discountCode);
+        double tax = TaxCalculator.calculateTax(subtotal - discount);
         return subtotal - discount + tax;
     }
     
@@ -167,17 +204,10 @@ public class PricingEngine {
         return subtotal;
     }
     
-    private double calculateDiscount(double subtotal, String customerType, String discountCode) {
-        // VIP customers
+    private DiscountStrategy getDiscountStrategy(String customerType) {
         if (customerType.equals("VIP")) {
-            if (discountCode.equals("SAVE10")) return subtotal * 0.1;
-            if (discountCode.equals("SAVE20")) return subtotal * 0.2;
-            return subtotal * 0.05;
+            return new VipDiscount();
         }
-        
-        // Regular customers
-        if (discountCode.equals("SAVE10")) return subtotal * 0.05;
-        if (discountCode.equals("SAVE20")) return subtotal * 0.1;
-        return 0;
+        return new RegularDiscount();
     }
 }

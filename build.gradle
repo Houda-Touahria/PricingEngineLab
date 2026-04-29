@@ -22,3 +22,10 @@ test {
 application {
     mainClass = 'com.pricing.Main'
 }
+
+
+tasks.withType(JavaCompile) {
+    options.compilerArgs << '-Xlint:-options'
+    options.deprecation = true
+    options.encoding = 'UTF-8'
+}
