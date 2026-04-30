@@ -15,7 +15,7 @@ The project was developed as part of a **Refactoring Lab** to demonstrate:
 - Git/GitHub workflow
 - Applying **Refactoring techniques** to improve code quality
 
-## 🛠️ Technologies Used
+## Technologies Used
 
 | Tool | Purpose |
 |------|---------|
