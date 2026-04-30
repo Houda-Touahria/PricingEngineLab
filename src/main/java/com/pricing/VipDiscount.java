@@ -1,4 +1,4 @@
-package main.java.com.pricing;
+package com.pricing;
 
 public class VipDiscount implements DiscountStrategy {
     @Override
