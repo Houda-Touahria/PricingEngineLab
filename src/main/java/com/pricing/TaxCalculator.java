@@ -1,4 +1,4 @@
-package com.pricing;
+package main.java.com.pricing;
 
 public class TaxCalculator {
     private static final double TAX_RATE = 0.1;
