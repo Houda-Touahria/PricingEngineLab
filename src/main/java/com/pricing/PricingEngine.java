@@ -183,7 +183,7 @@
 // }
 
 // 5
-package main.java.com.pricing;
+package com.pricing;
 
 import java.util.List;
 
